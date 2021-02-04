@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CST438_Project1_group8">
+        <activity android:name=".CreateLogin"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
