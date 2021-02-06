@@ -16,10 +16,13 @@ public interface UsersDao {
     List<User> loadAllByIds(int[] userIds);
 
     @Query("SELECT * FROM Users WHERE username LIKE :username LIMIT 1")
-    User findByName(String username);
+    List<User> findByName(String username);
 
     @Insert
     void insertAll(User... users);
+
+    @Insert
+    void insert(User user);
 
     @Delete
     void delete(User user);
