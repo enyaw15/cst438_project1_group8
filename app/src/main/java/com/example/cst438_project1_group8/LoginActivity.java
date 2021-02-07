@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
     public static final String LOGINACTIVITY = "LoginActivity";
     public static final String USER = "User";
@@ -36,9 +38,21 @@ public class LoginActivity extends AppCompatActivity {
                 boolean check = false;
 
                 //Implement code that checks for proper username and password here.
-
-
-                if(!(passwordSuccess)){
+                /*
+                List<userClass> users = dao.getRoom(LoginActivity.this).dao().getAllUsers();
+                for(int i = 0; i < users.size(); i++){
+                    if(name.equals(users.get(i).getUsername)){
+                        userSuccess = true;
+                        if(pword.equals(users.get(i).getPassword)){
+                            passwordSuccess = true;
+                            break; //User is correct, password is correct. End loop.
+                        } else {
+                            break; //User is correct, password is wrong. End loop
+                        }
+                    }
+                }
+                */
+                    if(!(passwordSuccess)){
                     msg += "Password is incorred.\n";
                     check = true;
                 }
