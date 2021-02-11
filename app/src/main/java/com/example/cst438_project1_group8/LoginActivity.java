@@ -29,10 +29,10 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(LOGINACTIVITY, "onClick called");
                 Toast toast = Toast.makeText(LoginActivity.this, "Login Toast", Toast.LENGTH_LONG);
                 toast.show();
-                EditText username = findViewById(R.id.username);
+                EditText username = findViewById(R.id.login_account_username);
                 String name = username.getText().toString();
                 Log.d(LOGINACTIVITY, "Username is " + name);
-                EditText password = findViewById(R.id.password);
+                EditText password = findViewById(R.id.login_account_password);
                 String pword = password.getText().toString();
                 Log.d(LOGINACTIVITY, "Password is " + pword);
                 String msg = "";
