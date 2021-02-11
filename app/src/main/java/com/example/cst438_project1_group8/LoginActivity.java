@@ -14,11 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String LOGINACTIVITY = "LoginActivity";
+    public static final String LOGIN_ACTIVITY = "LoginActivity";
     public static final String LOGIN = "Login";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(LOGINACTIVITY, "onCreate called");
+        Log.d(LOGIN_ACTIVITY, "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout);
 
@@ -26,24 +26,23 @@ public class LoginActivity extends AppCompatActivity {
         create_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(LOGINACTIVITY, "onClick called");
+                Log.d(LOGIN_ACTIVITY, "onClick called");
                 Toast toast = Toast.makeText(LoginActivity.this, "Login Toast", Toast.LENGTH_LONG);
                 toast.show();
                 EditText username = findViewById(R.id.login_account_username);
                 String name = username.getText().toString();
-                Log.d(LOGINACTIVITY, "Username is " + name);
+                Log.d(LOGIN_ACTIVITY, "Username is " + name);
                 EditText password = findViewById(R.id.login_account_password);
                 String pword = password.getText().toString();
-                Log.d(LOGINACTIVITY, "Password is " + pword);
+                Log.d(LOGIN_ACTIVITY, "Password is " + pword);
                 String msg = "";
                 boolean check = false;
 
-                //Implement code that checks for proper username and password here.
-                /*
-                List<userClass> users = dao.getRoom(LoginActivity.this).dao().getAllUsers();
+                List<User> users = UserDatabase.getUserDatabase(LoginActivity.this).usersDao().getAll();
+                Log.d(LOGIN_ACTIVITY, "Users size is " + users.size());
                 Pair<Boolean, Integer> userCheck = checkForUser(name, users);
-                if(userCheck.getKey()){
-                    if(checkForPassword(pword, userCheck.getValue(), users)){
+                if(userCheck.first){
+                    if(checkForPassword(pword, userCheck.second, users)){
                         check = true;
                     } else {
                         msg += "Password is incorrect.";
@@ -51,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
                 } else{
                     msg = "Username is incorrect.\n";
                 }
-                */
                 if(!(check)){
                     toast = Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG);
                     toast.show();;
@@ -67,32 +65,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    /*
-    * Checks to see if user exists.
-    * Currently commented out due to no room database implementation yet.
-     */
-    public Pair<Boolean, Integer> checkForUser(String name/*,List<Users> users.*/){
-        /*
+    public Pair<Boolean, Integer> checkForUser(String name,List<User> users){
+        Log.d(LOGIN_ACTIVITY, "checkForUser called");
         for(int i = 0; i < users.size(); i++){
-            if(name.equals(users.get(i).getUsername)){
-                userSuccess = true;
+            if(name.equals(users.get(i).getUsername())){
                 return new Pair<Boolean, Integer>(true, i);
             }
         }
-       */
         return new Pair<Boolean, Integer>(false, 0);
     }
 
-    /*
-    * Checks to see if password is correct for user.
-    * Currently comment out due to no room database implementation yet.
-     */
-    public boolean checkForPassword(String password, int index/*,List<Users> users.*/){
-        /*
-        if(users.get(index).getPassword.equals(password)){
+    public boolean checkForPassword(String password, int index,List<User> users){
+        Log.d(LOGIN_ACTIVITY, "checkForPassword called");
+        if(users.get(index).getPassword().equals(password)) {
             return true;
         }
-       */
-        return false;
+       return false;
     }
 }
