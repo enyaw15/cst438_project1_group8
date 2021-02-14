@@ -72,17 +72,4 @@ public class Job {
         return Html.fromHtml(jobDescription).toString();
     }
 
-    String[] skills = {"Python", "C++", "Java", "JavaScript", "HTML", "CSS", "API"};
-    List<String> skillMatch = new ArrayList<String>();
-
-    public List<String> getSkill() {
-        for(int i = 0; i < skills.length; i++) {
-            // check if skills are included in job description text
-            if (getJobDescription().toLowerCase().contains(skills[i].toLowerCase())) {
-                // if included, append the skill
-                skillMatch.add(skills[i]);
-            }
-        }
-        return skillMatch;
-    }
 }
