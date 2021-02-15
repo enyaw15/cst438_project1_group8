@@ -85,4 +85,6 @@ public class Job {
         }
         return skillMatch;
     }
+
+    public String[] getSkills() { return skills; }
 }
