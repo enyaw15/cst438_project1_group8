@@ -16,4 +16,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
+
+    <TextView
+        android:id="@+id/contact_us_textView"
+        android:layout_width="272dp"
+        android:layout_height="108dp"
+        android:text="Contact Us"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/customer_support_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <TextView
+        android:id="@+id/email_phone_number_textView"
+        android:layout_width="368dp"
+        android:layout_height="124dp"
+        android:text="Customer Support E-mail: JobAppHR@email.com\n\nPhone Number: (831)-831-8310"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/customer_support_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contact_us_textView"
+        app:layout_constraintVertical_bias="0.287" />
 </androidx.constraintlayout.widget.ConstraintLayout>
