@@ -42,4 +42,19 @@ public class UserDBInstrumentedTest {
             List<User> byName = usersDao.findByName("username");
             assertEquals(byName.get(0), user);
         }
+
+        @Test
+        public void checkIfUserExists() throws Exception {
+            User user = new User();
+            user.setUsername("example");
+            user.setPassword("password");
+            usersDao.insert(user);
+            User userTwo = new User();
+            userTwo.setUsername("example");
+            userTwo.setPassword("password2");
+            List<User> userByName = usersDao.findByName(userTwo.username);
+            assertEquals(false, userByName.isEmpty());
+            User lookUpUser = userByName.get(0);
+            assertEquals(true, lookUpUser.getUsername().equals(userTwo.getUsername()));
+        }
 }
