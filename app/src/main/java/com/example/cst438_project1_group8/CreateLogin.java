@@ -3,6 +3,7 @@ package com.example.cst438_project1_group8;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -36,8 +37,6 @@ public class CreateLogin extends AppCompatActivity {
             public void onClick(View view) {
                 username = usernameField.getText().toString();
                 password = usernameField.getText().toString();
-                /*TODO: switch context back to landing page
-                 */
                 User newUser = new User();
                 newUser.username = username;
                 newUser.password = password;
@@ -48,6 +47,9 @@ public class CreateLogin extends AppCompatActivity {
                 }else{
                     currentUsers.insert(newUser);
                     toaster("Successfully created login!");
+                    //Switch back to Login Activity
+                    Intent intent = new Intent(CreateLogin.this, LoginActivity.class);
+                    startActivity(intent);
                 }
             }
         });

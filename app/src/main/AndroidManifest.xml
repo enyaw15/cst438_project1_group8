@@ -32,6 +32,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CreateLogin"
+            android:label="CST438_Project1_group8"
+            android:theme="@style/Theme.CST438_Project1_group8.NoActionBar">
+            ​
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                ​
+                ​
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
     ​
 </manifest>
