@@ -17,6 +17,7 @@ public class CreateLogin extends AppCompatActivity {
     TextView usernameField;
     TextView passwordField;
     Button signup;
+    Button returnButton;
     String username;
     String password;
     UsersDao currentUsers;
@@ -27,6 +28,7 @@ public class CreateLogin extends AppCompatActivity {
         usernameField = findViewById(R.id.create_login_username_field);
         passwordField = findViewById(R.id.create_login_password_field);
         signup = findViewById(R.id.create_login_button);
+        returnButton = findViewById(R.id.create_login_return_button);
         currentUsers = Room.databaseBuilder(this, UserDatabase.class, "users")
                 .allowMainThreadQueries()
                 .build()
@@ -48,9 +50,14 @@ public class CreateLogin extends AppCompatActivity {
                     currentUsers.insert(newUser);
                     toaster("Successfully created login!");
                     //Switch back to Login Activity
-                    Intent intent = new Intent(CreateLogin.this, LoginActivity.class);
-                    startActivity(intent);
+                    returnToLogin();
                 }
+            }
+        });
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                returnToLogin();
             }
         });
     }
@@ -58,5 +65,10 @@ public class CreateLogin extends AppCompatActivity {
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
+    }
+
+    private void returnToLogin(){
+        Intent intent = new Intent(CreateLogin.this, LoginActivity.class);
+        startActivity(intent);
     }
 }

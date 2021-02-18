@@ -12,4 +12,5 @@
     <string name="create_login_name">Username</string>
     <string name="create_login_password">Password</string>
     <string name="create_login_button">Create</string>
+    <string name="create_login_return_button">Return</string>
 </resources>
