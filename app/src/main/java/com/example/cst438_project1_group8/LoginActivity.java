@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import java.util.List;
 
@@ -22,13 +23,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout);
 
+       UsersDao nameOfUsersDaoObject = Room.databaseBuilder(LoginActivity.this,
+                UserDatabase.class, "users")
+                .allowMainThreadQueries().build().usersDao();
+        User user = new User();
+        user.setUsername("Haku");
+        user.setPassword("Kuon");
+        user.userId = 0;
+        nameOfUsersDaoObject.insert(user);
         Button create_login_button = findViewById(R.id.login_button);
         create_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(LOGIN_ACTIVITY, "onClick called");
-                Toast toast = Toast.makeText(LoginActivity.this, "Login Toast", Toast.LENGTH_LONG);
-                toast.show();
                 EditText username = findViewById(R.id.login_account_username);
                 String name = username.getText().toString();
                 Log.d(LOGIN_ACTIVITY, "Username is " + name);
@@ -37,8 +44,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(LOGIN_ACTIVITY, "Password is " + pword);
                 String msg = "";
                 boolean check = false;
-
-                List<User> users = UserDatabase.getUserDatabase(LoginActivity.this).usersDao().getAll();
+                List<User> users = nameOfUsersDaoObject.getAll();
+                Toast toast = Toast.makeText(LoginActivity.this, ""+users.size(), Toast.LENGTH_LONG);
+                toast.show();
                 Log.d(LOGIN_ACTIVITY, "Users size is " + users.size());
                 Pair<Boolean, Integer> userCheck = checkForUser(name, users);
                 if(userCheck.first){
@@ -48,19 +56,27 @@ public class LoginActivity extends AppCompatActivity {
                         msg += "Password is incorrect.";
                     }
                 } else{
-                    msg = "Username is incorrect.\n";
+                    msg = "Username is incorrect.";
                 }
                 if(!(check)){
-                    toast = Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG);
-                    toast.show();;
+                   Toast t = Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG);
+                   t.show();;
                 } else {
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
-                    bundle.putString(LOGIN, name);
-                    intent.putExtras(bundle);
-                    setResult(Activity.RESULT_OK, intent);
-                    finish();
+                    Intent intent = new Intent(LoginActivity.this, JobActivity.class);
+                    startActivity(intent);
                 }
+            }
+        });
+
+        Button create_account_switch_button = findViewById(R.id.create_account_switch_button);
+        create_account_switch_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast t = Toast.makeText(LoginActivity.this,
+                        "Create account activity is being called", Toast.LENGTH_LONG);
+                t.show();
+                //Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.Class);
+                //startActivity(intent);
             }
         });
     }
