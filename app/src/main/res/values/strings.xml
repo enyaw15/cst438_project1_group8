@@ -10,9 +10,16 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <string name="create_login_name">Username</string>
+    <string name="create_login_password">Password</string>
+    <string name="create_login_button">Create</string>
+    <string name="create_login_return_button">Return</string>
+
+
     <string name="keywords">Keywords</string>
     <string name="cityZip">City or zip code</string>
     <string name="search">Search</string>
     <string name="reset">Reset</string>
     <string name="useMyLocation">Use my location</string>
+
 </resources>
