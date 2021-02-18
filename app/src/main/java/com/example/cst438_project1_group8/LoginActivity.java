@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import java.util.List;
 
@@ -37,8 +38,11 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(LOGIN_ACTIVITY, "Password is " + pword);
                 String msg = "";
                 boolean check = false;
-
-                List<User> users = UserDatabase.getUserDatabase(LoginActivity.this).usersDao().getAll();
+                UsersDao nameOfUsersDaoObject = Room.databaseBuilder(LoginActivity.this,
+                        UserDatabase.class, "users")
+                        .allowMainThreadQueries().build().usersDao();
+                List<User> users = nameOfUsersDaoObject.getAll();
+                        // UserDatabase.getUserDatabase(LoginActivity.this).usersDao().getAll()
                 Log.d(LOGIN_ACTIVITY, "Users size is " + users.size());
                 Pair<Boolean, Integer> userCheck = checkForUser(name, users);
                 if(userCheck.first){
@@ -63,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        
     }
 
     public Pair<Boolean, Integer> checkForUser(String name,List<User> users){
