@@ -6,7 +6,12 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import java.util.List;
-
+/**
+ * Text here
+ * @author Wayne Hayden
+ * @version 1.0
+ * @since 02-04-2021
+ */
 @Dao
 public interface UsersDao {
     @Query("SELECT * FROM Users")
