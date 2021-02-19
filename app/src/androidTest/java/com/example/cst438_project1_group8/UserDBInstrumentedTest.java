@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 @RunWith(AndroidJUnit4.class)
@@ -34,13 +35,19 @@ public class UserDBInstrumentedTest {
             db.close();
         }
 
+
         @Test
         public void writeUserAndReadInList() throws Exception {
             User user = new User();
-            user.username = "username";
+            user.setUsername("username");
             usersDao.insert(user);
             List<User> byName = usersDao.findByName("username");
-            assertEquals(byName.get(0), user);
+            assertNotNull(byName);
+            assertEquals(1, byName.size());
+            //this fails because we have auto generated userIds
+            //assertEquals(byName.get(0), user);
+            //I added new tests to test the same basic concept
+            assertEquals(true, byName.get(0).getUsername().equals(user.username));
         }
 
         @Test
@@ -56,5 +63,15 @@ public class UserDBInstrumentedTest {
             assertEquals(false, userByName.isEmpty());
             User lookUpUser = userByName.get(0);
             assertEquals(true, lookUpUser.getUsername().equals(userTwo.getUsername()));
+        }
+
+        @Test
+        public void checkPassword() throws Exception{
+            User user = new User();
+            user.setUsername("example");
+            user.setPassword("test");
+            usersDao.insert(user);
+            List<User> userByName = usersDao.findByName(user.getUsername());
+            assertEquals(true, userByName.get(0).getPassword().equals(user.getPassword()));
         }
 }

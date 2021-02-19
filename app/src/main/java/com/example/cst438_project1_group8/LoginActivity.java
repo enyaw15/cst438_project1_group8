@@ -26,11 +26,6 @@ public class LoginActivity extends AppCompatActivity {
        UsersDao nameOfUsersDaoObject = Room.databaseBuilder(LoginActivity.this,
                 UserDatabase.class, "users")
                 .allowMainThreadQueries().build().usersDao();
-        User user = new User();
-        user.setUsername("Haku");
-        user.setPassword("Kuon");
-        user.userId = 0;
-        nameOfUsersDaoObject.insert(user);
         Button create_login_button = findViewById(R.id.login_button);
         create_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,8 +40,8 @@ public class LoginActivity extends AppCompatActivity {
                 String msg = "";
                 boolean check = false;
                 List<User> users = nameOfUsersDaoObject.getAll();
-                Toast toast = Toast.makeText(LoginActivity.this, ""+users.size(), Toast.LENGTH_LONG);
-                toast.show();
+                //Toast toast = Toast.makeText(LoginActivity.this, ""+users.size(), Toast.LENGTH_LONG);
+                //toast.show();
                 Log.d(LOGIN_ACTIVITY, "Users size is " + users.size());
                 Pair<Boolean, Integer> userCheck = checkForUser(name, users);
                 if(userCheck.first){
@@ -60,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if(!(check)){
                    Toast t = Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG);
-                   t.show();;
+                   t.show();
                 } else {
                     Intent intent = new Intent(LoginActivity.this, JobActivity.class);
                     startActivity(intent);
@@ -75,8 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                 Toast t = Toast.makeText(LoginActivity.this,
                         "Create account activity is being called", Toast.LENGTH_LONG);
                 t.show();
-                //Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.Class);
-                //startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this, CreateLogin.class);
+                startActivity(intent);
             }
         });
     }

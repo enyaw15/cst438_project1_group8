@@ -5,6 +5,8 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -38,10 +40,10 @@ public class CreateLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 username = usernameField.getText().toString();
-                password = usernameField.getText().toString();
+                password = passwordField.getText().toString();
                 User newUser = new User();
-                newUser.username = username;
-                newUser.password = password;
+                newUser.setUsername(username);
+                newUser.setPassword(password);
 
                 List<User> checkUsername = currentUsers.findByName(username);
                 if(!checkUsername.isEmpty()){
