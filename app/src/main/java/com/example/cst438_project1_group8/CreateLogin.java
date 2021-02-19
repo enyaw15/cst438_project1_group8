@@ -15,6 +15,12 @@ import android.widget.Toast;
 
 import java.util.List;
 
+/**
+ * This is an activity that allows a user to create a login so they can access the rest of the app.
+ * @author Chris Estes
+ * @version 1.1
+ * @since 02-04-2021
+ */
 public class CreateLogin extends AppCompatActivity {
     TextView usernameField;
     TextView passwordField;
@@ -39,16 +45,20 @@ public class CreateLogin extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //get the text the user entered
                 username = usernameField.getText().toString();
                 password = passwordField.getText().toString();
+                //create a new user object with it
                 User newUser = new User();
                 newUser.setUsername(username);
                 newUser.setPassword(password);
-
+                //check if username is already taken
                 List<User> checkUsername = currentUsers.findByName(username);
                 if(!checkUsername.isEmpty()){
                     toaster("Username already exists!");
-                }else{
+                }
+                //otherwise add the user to the DB and return to the login activity
+                else{
                     currentUsers.insert(newUser);
                     toaster("Successfully created login!");
                     //Switch back to Login Activity
@@ -63,12 +73,18 @@ public class CreateLogin extends AppCompatActivity {
             }
         });
     }
+    /**
+     * This method produces a toast message.
+     * @param message is the message that we want to be displayed as a toast.
+     */
     private void toaster(String message){
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER,0,0);
         toast.show();
     }
-
+    /**
+     * This method generates an intent for the login activity and starts that activity.
+     */
     private void returnToLogin(){
         Intent intent = new Intent(CreateLogin.this, LoginActivity.class);
         startActivity(intent);
