@@ -11,6 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
+/**
+ * This is an activity that allows users to see details of a clicked job so they can check information about the job they are applying for.
+ * @author Lily Joh
+ * @version 1.1
+ * @since 1.1
+ */
 public class DetailsActivity extends AppCompatActivity {
 
     @Override

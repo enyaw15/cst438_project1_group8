@@ -35,6 +35,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * This is an activity that allows users to look up jobs so they can find job information that match their skills and location.
+ * @author Lily Joh
+ * @version 1.1
+ * @since 1.1
+ */
 public class JobActivity extends AppCompatActivity implements LocationListener {
 
     private RecyclerView rv_job;
@@ -80,13 +86,13 @@ public class JobActivity extends AppCompatActivity implements LocationListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (buttonView.isChecked()) {
-                    // checked
+                    // if checked
                     getLocation();
                     et_search_location.setText("");
                     location = "";
                     et_search_location.setEnabled(false);
                 } else {
-                    // not checked
+                    // if not checked
                     lat = "";
                     lon = "";
                     city = "";
@@ -140,8 +146,9 @@ public class JobActivity extends AppCompatActivity implements LocationListener {
                 // reset search conditions textView
                 tv_search_conditions.setText("");
 
-                // reset current location checkBox
+                // clear current location
                 cb_current_location.setChecked(false);
+                city = "";
 
                 // clear previous job list
                 jobs.clear();
@@ -151,7 +158,13 @@ public class JobActivity extends AppCompatActivity implements LocationListener {
         });
     }
 
-    // retrieve job data from API
+    /**
+     * This method makes a GET request to the endpoints and retrieves a list of job data.
+     * @param term a parameter indicates the endpoint parameter "description", which is a search term, such as "ruby" or "java".
+     * @param city a parameter indicates the endpoint parameter "location", which is a city name, zip code, or other location search term.
+     * @param lat a parameter indicates the endpoint parameter "lat", which is a specific latitude. If used, you must also send "lon" and must not send "location".
+     * @param lon a parameter indicates the endpoint parameter "long", which is a specific longitude. If used, you must also send "lat" and must not send "location".
+     */
     public void callApi(String term, String city, String lat, String lon) {
         apiInterface = RetrofitInstance.getRetrofitInstance().create(JsonPlaceHolderApi.class);
         Call<List<Job>> call = apiInterface.getJobs(term, city, lat, lon);
@@ -159,12 +172,12 @@ public class JobActivity extends AppCompatActivity implements LocationListener {
             @Override
             public void onResponse(Call<List<Job>> call, Response<List<Job>> response) {
                 jobs = response.body();
-                // results found
+                // if results found
                 if(jobs.size() != 0) {
                     adapter = new JobAdapter(jobs, JobActivity.this);
                     rv_job.setAdapter(adapter);
                 }
-                // no results found
+                // if no results found
                 else {
                     tv_search_conditions.setText("We couldn't find any results. Please try another search.");
                     adapter = new JobAdapter(jobs, JobActivity.this);
@@ -179,6 +192,9 @@ public class JobActivity extends AppCompatActivity implements LocationListener {
         });
     }
 
+    /**
+     * This method provides access to the system location services.
+     */
     @SuppressLint("MissingPermission")
     private void getLocation() {
         try {
@@ -189,15 +205,20 @@ public class JobActivity extends AppCompatActivity implements LocationListener {
         }
     }
 
+    /**
+     * This method retrieves user's current location information such as latitude, longitude, and a city name.
+     * @param currentLocation user's current location
+     */
     @Override
-    public void onLocationChanged(@NonNull Location location) {
-        lat = String.valueOf(location.getLatitude());
-        lon = String.valueOf(location.getLongitude());
+    public void onLocationChanged(@NonNull Location currentLocation) {
+        // get current latitude and longitude
+        lat = String.valueOf(currentLocation.getLatitude());
+        lon = String.valueOf(currentLocation.getLongitude());
 
         // get current city name
         try {
             Geocoder geocoder = new Geocoder(JobActivity.this, Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            List<Address> addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1);
             String address = addresses.get(0).getAddressLine(0);
 
             List<String> retvals = new ArrayList<String>();
