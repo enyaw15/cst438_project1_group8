@@ -14,6 +14,12 @@ import androidx.room.Room;
 
 import java.util.List;
 
+/**
+ * This is an activity that allows a user to login in order to access the rest of the app.
+ * @author Francisco Hernandez
+ * @version 1.1
+ * @since 02-04-2021
+ */
 public class LoginActivity extends AppCompatActivity {
     public static final String LOGIN_ACTIVITY = "LoginActivity";
     public static final String LOGIN = "Login";
@@ -23,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout);
 
-       UsersDao nameOfUsersDaoObject = Room.databaseBuilder(LoginActivity.this,
+        UsersDao nameOfUsersDaoObject = Room.databaseBuilder(LoginActivity.this,
                 UserDatabase.class, "users")
                 .allowMainThreadQueries().build().usersDao();
         Button create_login_button = findViewById(R.id.login_button);
@@ -76,6 +82,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method checks to see if the name the user entered exists in the system.
+     * @param name is the name the user enters.
+     * @param users contains all usernames that exist in the system.
+     */
     public Pair<Boolean, Integer> checkForUser(String name,List<User> users){
         Log.d(LOGIN_ACTIVITY, "checkForUser called");
         for(int i = 0; i < users.size(); i++){
@@ -86,6 +97,11 @@ public class LoginActivity extends AppCompatActivity {
         return new Pair<Boolean, Integer>(false, 0);
     }
 
+    /**
+     * This method checks to see if the user entered the correct password.
+     * @param password is the password for the account the user is trying to access.
+     * @param users contains all usernames and their respective password.
+     */
     public boolean checkForPassword(String password, int index,List<User> users){
         Log.d(LOGIN_ACTIVITY, "checkForPassword called");
         if(users.get(index).getPassword().equals(password)) {
