@@ -6,20 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
-    <TextView
-        android:id="@+id/tv_details_title"
+    <LinearLayout
+        android:id="@+id/lo_title_and_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/roboto_regular"
-        android:gravity="left"
-        android:text="Job Title"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_details_title"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="left"
+            android:text="@string/job_title"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/tb_save_job"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/toggle_selector"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintStart_toStartOf="@+id/tv_details_title"
+            tools:ignore="OnClick" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_details_company_name"
@@ -29,11 +51,11 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_regular"
         android:gravity="left"
-        android:text="Company Name"
+        android:text="@string/company_name"
         android:textColor="@color/purple_700"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_details_title" />
+        app:layout_constraintTop_toBottomOf="@+id/lo_title_and_save" />
 
     <TextView
         android:id="@+id/tv_details_location"
@@ -43,7 +65,7 @@
         android:layout_marginTop="5dp"
         android:fontFamily="@font/roboto_regular"
         android:gravity="left"
-        android:text="Location"
+        android:text="@string/location"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +78,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
-        android:text="Apply On Company Site"
+        android:text="@string/apply_on_company_site"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -79,7 +101,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="20dp"
-            android:text="Job Description"
+            android:text="@string/job_description"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:fontFamily="@font/roboto_regular"

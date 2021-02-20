@@ -2,12 +2,22 @@ package com.example.cst438_project1_group8;
 
 import android.text.Html;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(tableName = "jobs")
 public class Job {
+
+    @PrimaryKey(autoGenerate = true)
+    private int savedJobId;
+
+    private int userId;
 
     @SerializedName("id")
     private String jobId;
@@ -35,6 +45,58 @@ public class Job {
 
     @SerializedName("description")
     private String jobDescription;
+
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
+    }
+
+    public void setJobType(String jobType) {
+        this.jobType = jobType;
+    }
+
+    public void setJobUrl(String jobUrl) {
+        this.jobUrl = jobUrl;
+    }
+
+    public void setJobDate(String jobDate) {
+        this.jobDate = jobDate;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setCompanyUrl(String companyUrl) {
+        this.companyUrl = companyUrl;
+    }
+
+    public void setJobLocation(String jobLocation) {
+        this.jobLocation = jobLocation;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
+
+    public int getSavedJobId() {
+        return savedJobId;
+    }
+
+    public void setSavedJobId(int savedJobId) {
+        this.savedJobId = savedJobId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getJobId() {
         return jobId;
@@ -71,5 +133,4 @@ public class Job {
     public String getJobDescription() {
         return Html.fromHtml(jobDescription).toString();
     }
-
 }

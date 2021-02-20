@@ -21,5 +21,14 @@
     <string name="search">Search</string>
     <string name="reset">Reset</string>
     <string name="useMyLocation">Use my location</string>
+    <string name="myJobs">My Jobs</string>
+    <string name="company_name">Company Name</string>
+    <string name="job_title">Job Title</string>
+    <string name="location">Location</string>
+    <string name="apply_on_company_site">Apply On Company Site</string>
+    <string name="job_description">Job Description</string>
+    <string name="login">Login</string>
+    <string name="please_login_to_continue">Please login to continue</string>
+    <string name="don_t_have_an_account_tap_here">Don\'t have an account? Tap Here!</string>
 
 </resources>
