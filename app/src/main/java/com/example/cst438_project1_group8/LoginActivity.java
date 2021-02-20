@@ -1,6 +1,5 @@
 package com.example.cst438_project1_group8;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(LOGIN_ACTIVITY, "onCreate called");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_layout);
+        setContentView(R.layout.activity_login);
 
        UsersDao nameOfUsersDaoObject = Room.databaseBuilder(LoginActivity.this,
                 UserDatabase.class, "users")
@@ -57,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                    Toast t = Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG);
                    t.show();
                 } else {
-                    Intent intent = new Intent(LoginActivity.this, JobActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("currentUserId", getCurrentUser(name, users).userId);
                     startActivity(intent);
                 }
             }
@@ -92,5 +92,14 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
        return false;
+    }
+
+    public User getCurrentUser(String name, List<User> users) {
+        for(User user : users) {
+            if(user.username.equals(name)) {
+                return user;
+            }
+        }
+        return null;
     }
 }

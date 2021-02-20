@@ -2,6 +2,7 @@ package com.example.cst438_project1_group8;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -61,6 +62,11 @@ public class JobActivity extends AppCompatActivity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job);
+
+        int currentUserId = getIntent().getIntExtra("currentUserId", -1);
+
+        Intent intent = new Intent(JobActivity.this, JobAdapter.class);
+        intent.putExtra("currentUserId", currentUserId);
 
         rv_job = (RecyclerView)findViewById(R.id.rv_job);
         rv_job.setHasFixedSize(true);

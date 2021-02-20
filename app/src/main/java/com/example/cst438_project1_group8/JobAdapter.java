@@ -1,11 +1,13 @@
 package com.example.cst438_project1_group8;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +20,7 @@ import java.util.List;
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
     List<Job> jobs;
     Context context;
+    int currentUserId;
 
     public JobAdapter(List<Job> jobs, Context context) {
         this.jobs = jobs;
@@ -28,6 +31,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.job_row,parent,false);
+        currentUserId = ((Activity) context).getIntent().getIntExtra("currentUserId", -1);
         return new ViewHolder(v);
     }
 
@@ -66,6 +70,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
                         Intent intent = new Intent(context, DetailsActivity.class);
                         intent.putExtra("clicked", gsonClickedJob);
+                        intent.putExtra("currentUserId", currentUserId);
                         context.startActivity(intent);
                     }
                 }
