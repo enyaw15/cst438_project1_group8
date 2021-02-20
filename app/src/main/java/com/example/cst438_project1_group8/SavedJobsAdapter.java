@@ -4,22 +4,23 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.google.gson.Gson;
-
-import java.util.Collections;
 import java.util.List;
 
+/**
+ * This is an adapter to manage saved job objects in a recyclerview for SavedJobsActivity
+ * @author Lily Joh
+ * @version 1.1
+ * @since 1.1
+ */
 public class SavedJobsAdapter extends RecyclerView.Adapter<SavedJobsAdapter.ViewHolder> {
     List<Job> savedJobs;
     Context context;

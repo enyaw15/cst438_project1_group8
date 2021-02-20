@@ -7,10 +7,6 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.List;
 
 /**
  * This is an activity that allows users to look at the saved jobs so they can check or delete the jobs from the list.

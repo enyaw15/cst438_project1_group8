@@ -6,6 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+/**
+ * This class is a job database for saved jobs
+ * @author Lily Joh
+ * @version 1.1
+ * @since 1.1
+ */
 @Database(entities = {Job.class}, version = 1)
 public abstract class JobDatabase extends RoomDatabase {
     public abstract JobsDao jobsDao();

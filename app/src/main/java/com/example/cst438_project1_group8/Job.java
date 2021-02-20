@@ -2,15 +2,17 @@ package com.example.cst438_project1_group8;
 
 import android.text.Html;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * This class is the job object that contains job information, savedJobId, userId, and jobId
+ * @author Lily Joh
+ * @version 1.1
+ * @since 1.1
+ */
 @Entity(tableName = "jobs")
 public class Job {
 

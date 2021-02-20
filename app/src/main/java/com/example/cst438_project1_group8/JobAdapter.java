@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +15,12 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-
+/**
+ * This is an adapter to manage job objects in a recyclerview for JobActivity
+ * @author Lily Joh
+ * @version 1.1
+ * @since 1.1
+ */
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
     List<Job> jobs;
     Context context;
